@@ -1,0 +1,302 @@
+/* Sean's CSS */
+#map {
+    height: 100%;
+    width: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.controls {
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+#origin-input,
+#destination-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 200px;
+}
+#origin-input:focus,
+#destination-input:focus {
+    border-color: #4d90fe;
+}
+#mode-selector {
+    color: #fff;
+    background-color: #4d90fe;
+    margin-left: 12px;
+    padding: 5px 11px 0px 11px;
+}
+#mode-selector label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+}
+/*List directions==========================*/
+#mySidenav3 {
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+}
+
+#mySidenav3 select, #mySidenav3 input {
+    font-size: 15px;
+}
+
+#mySidenav3 select {
+    width: 100%;
+}
+
+#mySidenav3 i {
+    font-size: 12px;
+}
+
+
+/* Mike CSS =================================== */
+
+#map {
+    height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#displayData{
+    /*color: white;*/
+    display: block;
+    background-color: black;
+    cursor:pointer;
+}
+#more{
+    /*color: white;*/
+    cursor:pointer;
+}
+.dropdown{
+    display: inline;
+}
+.glyphicon-camera{
+    color: dodgerblue;
+}
+.glyphicon-tree-conifer{
+    color:green;
+}
+.glyphicon-scale{
+    color: rebeccapurple;
+}
+.glyphicon-cutlery{
+    color: darkred;
+}
+.infoPlaceName{
+    font-family: 'Roboto', 'sans-serif';
+}
+.infoPlaceAddress{
+    font-family: 'Roboto', 'sans-serif';
+
+}
+
+/* style for nav bar on home page */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: black;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    opacity:0.5;
+    text-align: center;
+}
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+
+
+}
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #ffff00;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#home {
+    font-size: 80px;
+    cursor: pointer;
+    float: left;
+}
+
+#home2{
+    font-size: 30px;
+
+
+}
+/* side nav bar for main maps page */
+.sidenav2 {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+
+}
+
+.sidenav2 a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav2 a:hover, .offcanvas a:focus{
+    color: #ffff00;
+}
+
+.sidenav2 .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+/* Home page */
+.container {
+    background: url("images/road-trip1.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    width:100%;
+}
+
+#map {
+    height: 100%;
+}
+
+#appNameHeader{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 80px;
+}
+
+#destination-input{
+    max-width:500px;
+}
+#mapPageMenuContainer{
+    background: url("images/road-trip1.jpg") no-repeat center center fixed;
+}
+
+#getDirectionsButton{
+    text-align: right;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.sidenav3 {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+
+}
+.sidenav3 a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav3 a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav3 .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#mapLogo{
+    font-size: 30px;
+    text-align: center;
+}
+
+#mapPageMenuContainer {
+    border-bottom: solid black;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+
+@media all and (max-width:800px ) {
+    #home2 {font-size: 25px;}
+    #mapLogo{ display: none;}
+    #getDirectionsButton {
+        font-size: 25px;
+        text-align: right;
+        float: right;
+    }
+}
+
+@media all and (max-width:420px ) {
+    #origin-input {
+        width: 45%
+    }
+
+    #destination-input {
+        width: 45%
+    }
+}
+
+
+
+
+

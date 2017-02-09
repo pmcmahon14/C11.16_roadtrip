@@ -16,24 +16,32 @@
 <div class="text-center">
     <h1>TRIP PLANNER</h1>
     <legend></legend>
-
     <div class="row vertical-offset-100">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Please create your account</h3>
                 </div>
+                <?php if(isset($_GET['err'])) { ?>
+                    <div class="alert alert-danger"><?php echo $_GET['err'] ?></div>
+                <?php } ?>
                 <div class="panel-body">
                     <form accept-charset="UTF-8" role="form" method="Post">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="User Name" name="username" type="text">
+                                <input class="form-control" name="username" placeholder="Username at least 4 character" type="text" required >
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password">
+                                <input class="form-control" name="password" placeholder="Password at least 4 character" type="password" required>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Email" name="email" type="email">
+                                <input class="form-control" name="confirm_password" placeholder="Confirm Password" type="password" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control"  name="mpg" placeholder="MPG" type="number" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="email" placeholder="Email address" type="email" required>
                             </div>
 
                             <input class="btn btn-lg btn-info btn-block" type="submit" name="submit" value="Create Account">

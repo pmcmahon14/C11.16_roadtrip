@@ -2,6 +2,7 @@ $(document).ready(function(){
     $("#mode-selector").hide();
     $("#getDirectionsButton").hide();
     $("#weatherDisplayContainer").hide();
+    getGasolineCost();
     $('#actionSubmit').click(function(){
         slicedNodes();
         checkForCheckedValues();
@@ -13,13 +14,24 @@ $(document).ready(function(){
         startPlaces(nodesToCheck6);
 
     });
-    // $('#submit_event').click(function (){
-    //     getResults();
-    // });
-
     $('#submit_event').on('click', function() {
         getResults();
     });
+    $("#displayData").on('click',function() {
+        if(dataPointsBlocker === false){
+            show_message("Please select your route first");
+        } else {
+            $("#myModal").modal('show');
+        }
+    });
+
+    $("#displayData2").on('click',function () {
+        if(findEventBlocker === false){
+            show_message("Please select route");
+        }else{
+            $("#myModalTwo").modal("show");
+        }
+    })
 });
 
 var map;
@@ -34,16 +46,21 @@ var nodesToCheck3 = null;
 var nodesToCheck4 = null;
 var nodesToCheck5 = null;
 var nodesToCheck6 = null;
-var marker_event;
 var infowindow;
 var destination = null;
 var city = null;
 var state = null;
-
 var totalMilesofTrip = null;
 var pricePerGallon = null;
 var usersCostOfTrip = null;
 var weatherLoaded = false;
+var result;
+var cityForEvent = null;
+var choice = null;
+
+
+var dataPointsBlocker = false;
+var findEventBlocker = false;
 
 
 function initMap() {
@@ -77,7 +94,6 @@ function AutocompleteDirectionsHandler(map) {
     var destinationAutocomplete = new google.maps.places.Autocomplete(
         destinationInput, {placeIdOnly: true});
 
-    console.log('omg',destinationAutocomplete);
 
     this.setupClickListener('changemode-driving', 'DRIVING');
     this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
@@ -93,34 +109,47 @@ function AutocompleteDirectionsHandler(map) {
  *Create event Marker and info_window for marker
  */
 
-function create_event_marker(result,lat,lng){
-     marker_event = new google.maps.Marker({
+function create_event_marker(eventData){
+    var lat = parseFloat(eventData.latitude);
+    var lng = parseFloat(eventData.longitude);
+     var marker_event = new google.maps.Marker({
          position: {lat: lat, lng: lng},
          map: map,
          icon:'images/location_pin_marker.png'
     });
-    create_info_event(marker_event,result);
+    return marker_event;
 }
 
-function create_info_event(pos,result){
-    var contentString2 = '<div>' + '<p>'+ result.title+'</p>' + '</div>';
-    contentString2 += '<br>' + result.city_name;
+function create_info_event(marker,result){
+    var title = $("<h1>",{
+        text: result.title
+    });
+    var cityLabel = $("<h3>",{
+        text: result.city_name
+    });
+    var address = $("<p>",{
+        text: result.venue_address
+    });
+    var eventLink = $("<a>",{
+        href: result.venue_url,
+        text: "Click here for more details",
+        target:"_blank"
+
+    });
+
+    var container = $("<div>").append(title,cityLabel,address,eventLink);
     var infoWindow2 = new google.maps.InfoWindow({
-        content: contentString2
+        content: container.html()
     });
 
-    //create info window for locations
-    // infoWindow2.addListener('domready',function(){
-    //     $('.direction').on('click',function(){
-    //         calculateAndDisplayRoute(infoWindow2,newMarker);//truyen newmarker vao de lay vi tri 2
-    //     });
-    // });
-    //when location marker clicked
-    pos.addListener('click',function(){
-        infoWindow2.open(map,pos);
-    });
-    return pos;
+    marker.addListener('click', (
+        function(){return function(){
+            infoWindow2.open(map,marker);
+        };}
+    )());
+    return marker;
 }
+
     AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
 
     var radioButton = document.getElementById(id);
@@ -172,11 +201,13 @@ AutocompleteDirectionsHandler.prototype.route = function() {
 
     }, function (response, status) {
         if (status === 'OK') {
-            console.log('cung',response);
             me.directionsDisplay.setDirections(response);
             route = response.routes[0];
             var path = response.routes[0].overview_path;
             totalMilesofTrip = parseFloat(response.routes[0].legs[0].distance.text);
+            dataPointsBlocker = true;
+            findEventBlocker = true;
+
 
             var currentI = 0;
             nodes = [path[0]];
@@ -202,7 +233,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         }
     });
     //marker for events
-    getInformation();
+
 };
 
 
@@ -347,7 +378,7 @@ function cityStateDestination (){
 
 function getWeather() {
     if (city == null && state == null) {
-        alert("Please select route");
+        show_message("Please select route");
     }
     else if (weatherLoaded === false){
         $.ajax({
@@ -436,5 +467,53 @@ function mapPageWeatherAccordian() {
                 }
             }
         }
+}
+
+function getInformation(choice,cityForEvent) {
+    console.log('call get info at event_finder.js');
+    $.ajax({
+        data: {
+            app_key: "9QPc4kCRH3JtNMsD"
+        },
+
+        dataType: 'jsonp',
+        method: "get",
+        // url: 'http://api.eventful.com/json/events/search?...&keywords=Las Vegas, NV, United States&date=2017020500-2017021500&app_key=9QPc4kCRH3JtNMsD',
+        url: 'http://api.eventful.com/json/events/search?...&keywords='+choice+'&location='+cityForEvent+'&date=2017020400-2017071500&app_key=9QPc4kCRH3JtNMsD',
+
+        success: function (result) {
+            console.log('here is the result ',result);
+            if (result.events === null) {
+                show_message("No Events found");
+            } else {
+                for (var i = result.events.event.length-1; i >=0 ; i--) {
+                    // cityEvent = result.events.event[i].city_name;
+                    // eventAddress = result.events.event[i].venue_address;
+                    // eventTitle = result.events.event[i].title;
+                    var marker = create_event_marker(result.events.event[i]);
+                    create_info_event(marker,result.events.event[i]);
+                }
+            }
+        },
+        error: function(){
+            console.log('event finder not sucessful');
+        }
+    })
+}
+
+
+function getResults(){
+    cityForEvent = $('#cityEvent').val();
+    choice = $('input[name=choose]:checked').val();
+    getInformation(choice,cityForEvent);
+}
+
+function set_val_destination(){
+    $('#cityEvent').val(destination);
+    console.log('des',destination);
+}
+
+function show_message(message){
+    alert(message);
 }
 

@@ -22,6 +22,73 @@
     <div class="row">
         <span class="mapMenu col-sm-4" id="home2" onclick="openNav2()">&#9776;<span>Menu</span></span>
         <span class="col-sm-4" id="mapLogo">Roadtripping</span>
+
+        <div id="displayDataContainer">
+
+            <button id= "displayData2" type="button" data-toggle="modal" data-target="#myModal2" onclick="set_val_destination()">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+                <span class="caret"></span>
+            </button>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-bed"></span>
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <p>Accommodations:</p>
+                    <li><a><input value="hotels" type="checkbox" onclick="plotData()"/>Hotels</a></li>
+                    <li><a><input value="motel" type="checkbox"/>Motels</a></li>
+                    <li><a><input value="campground + rv_park" type="checkbox"/>Camping/RV Parks</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu2" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-camera"></span>
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <p>Attractions</p>
+                    <li><a><input value="amusement park" type="checkbox"/>Amusement Parks</a></li>
+                    <li><a><input value="museums" type="checkbox"/>Museums</a></li>
+                    <li><a><input  value="zoo / aquarium" type="checkbox"/>Zoo/Aquarium</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu3" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-tree-conifer"></span>
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <p>Outdoors and Recreation:</p>
+                    <li><a><input value="beach" type="checkbox"/>Beaches</a></li>
+                    <li><a><input value="trails" type="checkbox"/>Trails/Hikes</a></li>
+                    <li><a><input value="nationalParks" type="checkbox"/>National Parks</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu4" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-scale"></span>
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <p>Gas and Service Stations</p>
+                    <li><a><input value="gas" type="checkbox"/>Gas Stations Only</a></li>
+                    <li><a><input value="car repair" type="checkbox"/>Service Stations Only</a></li>
+                    <li><a><input  value="gas / car repair" type="checkbox"/>Gas and Service Stations</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu5" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-cutlery"></span>
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <p>Food and Drink</p>
+                    <li><a><input value="restaurants" type="checkbox"/>Restaurants</a></li>
+                    <li><a><input value="diners" type="checkbox"/>Diners</a></li>
+                    <li><a><input value="fast food" type="checkbox"/>Fast Food</a></li>
+                    <li><a><input value="health Food + health" type="checkbox"/>Vegetarian and Health Food</a></li>
+                    <li><a><input value="bars" type="checkbox"/>Bars and Drinks</a></li>
+                    <li><a><input value="wineries/Breweries" type="checkbox"/>Wineries, Breweries and
+                        Distilleries</a></li>
+                </ul>
+            </div>
+        </div>
         <span class="col-sm-4" id="getDirectionsButton" onclick="openNav3()">Directions</span>
     </div>
 </div>
@@ -45,43 +112,7 @@
     <a href="signin.html">Sign In</a>
     <a href="create_new_account.html">Create Account</a>
     <a href="">My Account</a>
-    <a id=displayData type="button">Choose Places</a>
     <a href="check_list.html" onclick="flipPage()">Pack/Shop List</a>
-    <a id= "displayData2" type="button" data-toggle="modal" data-target="#myModal2" onclick="set_val_destination()">Find Event</a>
-    <a onclick="getWeather()">Weather</a>
-    <div id="weatherDisplayContainer">
-        <button class="accordion">Current Weather</button>
-        <div class="panelAccordian">
-            <div id="weatherImage"></div>
-            <div id="weatherLocation"></div>
-            <div id="weatherAlerts"></div>
-            <div id="weatherTemp"></div>
-            <div id="weatherHumidity"></div>
-            <div id="weatherWind"></div>
-        </div>
-        <button class="accordion" id="weatherDOW1"></button>
-        <div class="panelAccordian">
-            <div id="weatherIcon1"></div>
-            <div id="weatherHigh1"></div>
-            <div id="weatherLow1"></div>
-            <div id="weatherPrep1"></div>
-            <div id="weatherWind1"></div>
-        </div>
-        <button class="accordion" id="weatherDOW2"></button>
-        <div class="panelAccordian">
-            <div id="weatherIcon2"></div>
-            <div id="weatherHigh2"></div>
-            <div id="weatherLow2"></div>
-            <div id="weatherPrep2"></div>
-        </div>
-        <button class="accordion" id="weatherDOW3"></button>
-        <div class="panelAccordian">
-            <div id="weatherIcon3"></div>
-            <div id="weatherHigh3"></div>
-            <div id="weatherLow3"></div>
-            <div id="weatherPrep3"></div>
-        </div>
-    </div>
 </div>
 
 
@@ -91,89 +122,36 @@
     <div id="right-panel"></div>
 </div>
 
+
 <div id="map"></div>
+<div id="eventsBar"></div>
 
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Please select what data you would like to be displayed on your route</h4>
-            </div>
-            <div class="modal-body">
-                <!-- first drop down -- Accommodations -->
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-bed"></span>
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                        <p>Accommodations:</p>
-                        <li><a><input value="hotels" type="checkbox"/>Hotels</a></li>
-                        <li><a><input value="motel" type="checkbox"/>Motels</a></li>
-                        <li><a><input value="campground + rv_park" type="checkbox"/>Camping/RV Parks</a></li>
-                    </ul>
-                </div>
-                <! --- second drop down Attractions -->
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="menu2" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-camera"></span>
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                        <p>Attractions</p>
-                        <li><a><input value="amusement park" type="checkbox"/>Amusement Parks</a></li>
-                        <li><a><input value="museums" type="checkbox"/>Museums</a></li>
-                        <li><a><input  value="zoo / aquarium" type="checkbox"/>Zoo/Aquarium</a></li>
-                   </ul>
-                </div>
-                <!-- Third drop down Outdoors and Recreation -->
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="menu3" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-tree-conifer"></span>
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                        <p>Outdoors and Recreation:</p>
-                        <li><a><input value="beach" type="checkbox"/>Beaches</a></li>
-                        <li><a><input value="trails" type="checkbox"/>Trails/Hikes</a></li>
-                        <li><a><input value="nationalParks" type="checkbox"/>National Parks</a></li>
-                    </ul>
-                </div>
-                <!-- forth drop down Gas Stations and Service Stations -->
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="menu4" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-scale"></span>
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                        <p>Gas and Service Stations</p>
-                        <li><a><input value="gas" type="checkbox"/>Gas Stations Only</a></li>
-                        <li><a><input value="car repair" type="checkbox"/>Service Stations Only</a></li>
-
-                        <li><a><input  value="gas / car repair" type="checkbox"/>Gas and Service Stations</a></li>
-
-                    </ul>
-                </div>
-                <!-- fifth drop down food -->
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="menu5" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-cutlery"></span>
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                        <p>Food and Drink</p>
-                        <li><a><input value="restaurants" type="checkbox"/>Restaurants</a></li>
-                        <li><a><input value="diners" type="checkbox"/>Diners</a></li>
-                        <li><a><input value="fast food" type="checkbox"/>Fast Food</a></li>
-                        <li><a><input value="health Food + health" type="checkbox"/>Vegetarian and Health Food</a></li>
-                        <li><a><input value="bars" type="checkbox"/>Bars and Drinks</a></li>
-                        <li><a><input value="wineries/Breweries" type="checkbox"/>Wineries, Breweries and
-                            Distilleries</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="actionSubmit" type="button" class="btn btn-default" data-dismiss="modal">Show Results
-                </button>
-            </div>
+<div id="weatherBar">
+        <div id="weatherDisplayContainer">
+            <h1>Current Weather</h1>
+            <div id="weatherImage"></div>
+            <div id="weatherLocation"></div>
+            <div id="weatherAlerts"></div>
+            <div id="weatherTemp"></div>
+            <div id="weatherHumidity"></div>
+            <div id="weatherWind"></div>
+            <h1 id="weatherDOW1"></h1>
+            <div id="weatherIcon1"></div>
+            <div id="weatherHigh1"></div>
+            <div id="weatherLow1"></div>
+            <div id="weatherPrep1"></div>
+            <div id="weatherWind1"></div>
+            <h1 id="weatherDOW2"></h1>
+            <div id="weatherIcon2"></div>
+            <div id="weatherHigh2"></div>
+            <div id="weatherLow2"></div>
+            <div id="weatherPrep2"></div>
+            <h1 id="weatherDOW3"></h1>
+            <div id="weatherIcon3"></div>
+            <div id="weatherHigh3"></div>
+            <div id="weatherLow3"></div>
+            <div id="weatherPrep3"></div>
         </div>
-    </div>
 </div>
 
 <div id="myModal2" class="modal fade" role="dialog" >
@@ -202,11 +180,12 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="submit_event"  type="button" class="btn btn-default" data-dismiss="modal" onclick="/*getInformation()*/">Show Results</button>
+                <button id="submit_event"  type="button" class="btn btn-default" data-dismiss="modal">Show Results</button>
             </div>
         </div>
     </div>
 </div>
+
 
 
 </body>

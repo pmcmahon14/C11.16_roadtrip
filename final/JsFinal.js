@@ -2,18 +2,9 @@ $(document).ready(function(){
     $("#mode-selector").hide();
     $("#getDirectionsButton").hide();
     $("#weatherDisplayContainer").hide();
+    $("#displayDataContainer").hide();
     getGasolineCost();
-    $('#actionSubmit').click(function(){
-        slicedNodes();
-        checkForCheckedValues();
-        startPlaces(nodesToCheck);
-        startPlaces(nodesToCheck2);
-        startPlaces(nodesToCheck3);
-        startPlaces(nodesToCheck4);
-        startPlaces(nodesToCheck5);
-        startPlaces(nodesToCheck6);
 
-    });
     $('#submit_event').on('click', function() {
         getResults();
     });
@@ -25,13 +16,6 @@ $(document).ready(function(){
         }
     });
 
-    $("#displayData2").on('click',function () {
-        if(findEventBlocker === false){
-            show_message("Please select route");
-        }else{
-            $("#myModalTwo").modal("show");
-        }
-    })
 });
 
 var map;
@@ -59,8 +43,7 @@ var cityForEvent = null;
 var choice = null;
 
 
-var dataPointsBlocker = false;
-var findEventBlocker = false;
+
 
 
 function initMap() {
@@ -207,6 +190,8 @@ AutocompleteDirectionsHandler.prototype.route = function() {
             totalMilesofTrip = parseFloat(response.routes[0].legs[0].distance.text);
             dataPointsBlocker = true;
             findEventBlocker = true;
+            getWeather();
+            $("#displayDataContainer").show();
 
 
             var currentI = 0;
@@ -377,6 +362,8 @@ function cityStateDestination (){
 }
 
 function getWeather() {
+    console.log('Get weather function called');
+
     if (city == null && state == null) {
         show_message("Please select route");
     }
@@ -389,8 +376,7 @@ function getWeather() {
             success: function (result) {
                 //TODO: do dom creation instead of using hard coded html
                 noAlerts(result);
-                mapPageWeatherAccordian();
-
+                $("#weatherDisplayContainer").show();
                 var weatherImage = $('<img>', {src: result.current_observation.icon_url});
                 var location = result.current_observation.display_location.full;
                 var temp = result.current_observation.temp_f + '&#176;' + ' F';
@@ -415,14 +401,9 @@ function getWeather() {
                     $("#weatherLow"+[i]).append(lowTemp);
                     $("#weatherPrep"+[i]).append(precipitation);
                     $("#weatherWind"+[i]).append(wind);
-                    weatherLoaded = true;
                 }
             }
         });
-    }
-    else{
-        mapPageWeatherAccordian();
-
     }
 }
 
@@ -453,21 +434,7 @@ function calculateCostOfTrip(){
 
 }
 
-function mapPageWeatherAccordian() {
-    $("#weatherDisplayContainer").toggle();
-        var acc = document.getElementsByClassName("accordion");
-        for (var i = 0; i < acc.length; i++) {
-            acc[i].onclick = function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            }
-        }
-}
+
 
 function getInformation(choice,cityForEvent) {
     console.log('call get info at event_finder.js');
@@ -487,9 +454,6 @@ function getInformation(choice,cityForEvent) {
                 show_message("No Events found");
             } else {
                 for (var i = result.events.event.length-1; i >=0 ; i--) {
-                    // cityEvent = result.events.event[i].city_name;
-                    // eventAddress = result.events.event[i].venue_address;
-                    // eventTitle = result.events.event[i].title;
                     var marker = create_event_marker(result.events.event[i]);
                     create_info_event(marker,result.events.event[i]);
                 }
@@ -517,3 +481,14 @@ function show_message(message){
     alert(message);
 }
 
+function plotData() {
+        slicedNodes();
+        checkForCheckedValues();
+        startPlaces(nodesToCheck);
+        startPlaces(nodesToCheck2);
+        startPlaces(nodesToCheck3);
+        startPlaces(nodesToCheck4);
+        startPlaces(nodesToCheck5);
+        startPlaces(nodesToCheck6);
+
+}

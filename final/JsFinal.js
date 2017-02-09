@@ -5,6 +5,7 @@ $(document).ready(function(){
     $("#displayDataContainer").hide();
     getGasolineCost();
 
+
     $('#submit_event').on('click', function() {
         getResults();
     });
@@ -110,6 +111,9 @@ function create_info_event(marker,result){
     var cityLabel = $("<h3>",{
         text: result.city_name
     });
+    var timeForEvent = $("<p>",{
+        text: result.start_time
+    });
     var address = $("<p>",{
         text: result.venue_address
     });
@@ -120,7 +124,7 @@ function create_info_event(marker,result){
 
     });
 
-    var container = $("<div>").append(title,cityLabel,address,eventLink);
+    var container = $("<div>").append(title,cityLabel,address,timeForEvent,eventLink);
     var infoWindow2 = new google.maps.InfoWindow({
         content: container.html()
     });
@@ -130,6 +134,8 @@ function create_info_event(marker,result){
             infoWindow2.open(map,marker);
         };}
     )());
+
+    $("#eventsContainer1").append(container);
     return marker;
 }
 
@@ -188,9 +194,9 @@ AutocompleteDirectionsHandler.prototype.route = function() {
             route = response.routes[0];
             var path = response.routes[0].overview_path;
             totalMilesofTrip = parseFloat(response.routes[0].legs[0].distance.text);
-            dataPointsBlocker = true;
-            findEventBlocker = true;
+            cityForEvent =
             getWeather();
+            initialEvents(destination);
             $("#displayDataContainer").show();
 
 
@@ -437,6 +443,7 @@ function calculateCostOfTrip(){
 
 
 function getInformation(choice,cityForEvent) {
+    $("#eventsContainer1").text(" ");
     console.log('call get info at event_finder.js');
     $.ajax({
         data: {
@@ -445,8 +452,7 @@ function getInformation(choice,cityForEvent) {
 
         dataType: 'jsonp',
         method: "get",
-        // url: 'http://api.eventful.com/json/events/search?...&keywords=Las Vegas, NV, United States&date=2017020500-2017021500&app_key=9QPc4kCRH3JtNMsD',
-        url: 'http://api.eventful.com/json/events/search?...&keywords='+choice+'&location='+cityForEvent+'&date=2017020400-2017071500&app_key=9QPc4kCRH3JtNMsD',
+        url: 'http://api.eventful.com/json/events/search?...&keywords='+choice+'&location='+cityForEvent+'&date=today&app_key=9QPc4kCRH3JtNMsD',
 
         success: function (result) {
             console.log('here is the result ',result);
@@ -491,4 +497,32 @@ function plotData() {
         startPlaces(nodesToCheck5);
         startPlaces(nodesToCheck6);
 
+}
+
+
+function initialEvents (cityForEvent) {
+    $.ajax({
+        data: {
+            app_key: "9QPc4kCRH3JtNMsD"
+        },
+
+        dataType: 'jsonp',
+        method: "get",
+        url: 'http://api.eventful.com/json/events/search?...&keywords=comedy&location='+cityForEvent+'&date=today&app_key=9QPc4kCRH3JtNMsD',
+
+        success: function (result) {
+            console.log('here is the result ',result);
+            if (result.events === null) {
+                show_message("No Events found");
+            } else {
+                for (var i = result.events.event.length-1; i >=0 ; i--) {
+                    var marker = create_event_marker(result.events.event[i]);
+                    create_info_event(marker,result.events.event[i]);
+                }
+            }
+        },
+        error: function(){
+            console.log('event finder not sucessful');
+        }
+    })
 }

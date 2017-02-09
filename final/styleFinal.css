@@ -19,6 +19,7 @@ html, body {
     display: inline-block;
     vertical-align: top;
     font-size: initial;
+    overflow: auto;
 
 }
 

@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check List</title>
+    <link rel="stylesheet" href="styleFinal.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="JsFinal.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <style>
 
-    body {
+    .listBody {
         margin: 0;
         min-width: 250px;
         background: url("images/road-trip1.jpg") no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
+         -webkit-background-size: cover;
+         -moz-background-size: cover;
+         -o-background-size: cover;
         background-size: cover;
         height: 100vh;
         width: 100vw;
@@ -49,9 +52,9 @@
         margin-right: auto;
 
         /* make the list items unselectable */
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         -ms-user-select: none;
         user-select: none;
     }
 
@@ -175,7 +178,7 @@
     }
 
 </style>
-<body>
+<body class="listBody">
 <div class="pageContainerBack">
 <!--SHOPPING LIST-->
 <a href="indexFinal.html" class="backArrow glyphicon glyphicon-chevron-left"><span>Map</span></a>
@@ -206,10 +209,10 @@
 </ul>
 
 <script>
-    // Create a "close" button and append it to each list item
-    var myNodelist = document.getElementsByTagName("LI");
-    var i;
-    for (i = 0; i < myNodelist.length; i++) {
+        // Create a "close" button and append it to each list item
+        var myNodelist = document.getElementsByTagName("LI");
+        var i;
+        for (i = 0; i < myNodelist.length; i++) {
         var button = document.createElement("SPAN");
         var txt = document.createTextNode("\u00D7");
         button.className = "close";
@@ -217,8 +220,8 @@
         myNodelist[i].appendChild(button);
     }
 
-    // Click on a close button to hide the current list item
-    var close = document.getElementsByClassName("close");
+        // Click on a close button to hide the current list item
+        var close = document.getElementsByClassName("close");
     for (i = 0; i < close.length; i++) {
         close[i].onclick = function() {
             var div = this.parentElement;
@@ -245,8 +248,8 @@
         if (inputValue === '') {
             alert("You must write something!");
         } else {
-            document.getElementById("myUL").appendChild(li);
-        }
+        document.getElementById("myUL").appendChild(li);
+    }
         document.getElementById("myInput").value = "";
 
         var button = document.createElement("SPAN");
@@ -273,8 +276,8 @@
         if (inputValue2 === '') {
             alert("You must write something!");
         } else {
-            document.getElementById("myUL2").appendChild(li);
-        }
+        document.getElementById("myUL2").appendChild(li);
+    }
         document.getElementById("myInput2").value = "";
 
         var button = document.createElement("SPAN");

@@ -36,8 +36,8 @@
                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                     <p>Accommodations:</p>
                     <li><a><input value="hotels" type="checkbox" onclick="plotData()"/>Hotels</a></li>
-                    <li><a><input value="motel" type="checkbox"/>Motels</a></li>
-                    <li><a><input value="campground + rv_park" type="checkbox"/>Camping/RV Parks</a></li>
+                    <li><a><input value="motel" type="checkbox" onclick="plotData()"/>Motels</a></li>
+                    <li><a><input value="campground + rv_park" type="checkbox" onclick="plotData()"/>Camping/RV Parks</a></li>
                 </ul>
             </div>
             <div class="dropdown">
@@ -46,9 +46,9 @@
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                     <p>Attractions</p>
-                    <li><a><input value="amusement park" type="checkbox"/>Amusement Parks</a></li>
-                    <li><a><input value="museums" type="checkbox"/>Museums</a></li>
-                    <li><a><input  value="zoo / aquarium" type="checkbox"/>Zoo/Aquarium</a></li>
+                    <li><a><input value="amusement park" type="checkbox" onclick="plotData()"/>Amusement Parks</a></li>
+                    <li><a><input value="museums" type="checkbox" onclick="plotData()"/>Museums</a></li>
+                    <li><a><input  value="zoo / aquarium" type="checkbox" onclick="plotData()"/>Zoo/Aquarium</a></li>
                 </ul>
             </div>
             <div class="dropdown">
@@ -57,9 +57,9 @@
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                     <p>Outdoors and Recreation:</p>
-                    <li><a><input value="beach" type="checkbox"/>Beaches</a></li>
-                    <li><a><input value="trails" type="checkbox"/>Trails/Hikes</a></li>
-                    <li><a><input value="nationalParks" type="checkbox"/>National Parks</a></li>
+                    <li><a><input value=" state beach" type="checkbox" onclick="plotData()"/>Beaches</a></li>
+                    <li><a><input value="trails" type="checkbox" onclick="plotData()"/>Trails/Hikes</a></li>
+                    <li><a><input value="nationalParks" type="checkbox" onclick="plotData()"/>National Parks</a></li>
                 </ul>
             </div>
             <div class="dropdown">
@@ -68,9 +68,9 @@
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                     <p>Gas and Service Stations</p>
-                    <li><a><input value="gas" type="checkbox"/>Gas Stations Only</a></li>
-                    <li><a><input value="car repair" type="checkbox"/>Service Stations Only</a></li>
-                    <li><a><input  value="gas / car repair" type="checkbox"/>Gas and Service Stations</a></li>
+                    <li><a><input value="gas" type="checkbox" onclick="plotData()"/>Gas Stations Only</a></li>
+                    <li><a><input value="car repair" type="checkbox" onclick="plotData()"/>Service Stations Only</a></li>
+                    <li><a><input  value="gas / car repair" type="checkbox" onclick="plotData()"/>Gas and Service Stations</a></li>
                 </ul>
             </div>
             <div class="dropdown">
@@ -79,12 +79,12 @@
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                     <p>Food and Drink</p>
-                    <li><a><input value="restaurants" type="checkbox"/>Restaurants</a></li>
-                    <li><a><input value="diners" type="checkbox"/>Diners</a></li>
-                    <li><a><input value="fast food" type="checkbox"/>Fast Food</a></li>
-                    <li><a><input value="health Food + health" type="checkbox"/>Vegetarian and Health Food</a></li>
-                    <li><a><input value="bars" type="checkbox"/>Bars and Drinks</a></li>
-                    <li><a><input value="wineries/Breweries" type="checkbox"/>Wineries, Breweries and
+                    <li><a><input value="restaurants" type="checkbox" onclick="plotData()"/>Restaurants</a></li>
+                    <li><a><input value="diners" type="checkbox" onclick="plotData()"/>Diners</a></li>
+                    <li><a><input value="fast food" type="checkbox" onclick="plotData()"/>Fast Food</a></li>
+                    <li><a><input value="health Food + health" type="checkbox" onclick="plotData()"/>Vegetarian and Health Food</a></li>
+                    <li><a><input value="bars" type="checkbox" onclick="plotData()"/>Bars and Drinks</a></li>
+                    <li><a><input value="wineries/Breweries" type="checkbox" onclick="plotData()"/>Wineries, Breweries and
                         Distilleries</a></li>
                 </ul>
             </div>
@@ -128,30 +128,39 @@
 
 <div id="weatherBar">
         <div id="weatherDisplayContainer">
-            <h1>Current Weather</h1>
-            <div id="weatherImage"></div>
-            <div id="weatherLocation"></div>
-            <div id="weatherAlerts"></div>
-            <div id="weatherTemp"></div>
-            <div id="weatherHumidity"></div>
-            <div id="weatherWind"></div>
-            <h1 id="weatherDOW1"></h1>
-            <div id="weatherIcon1"></div>
-            <div id="weatherHigh1"></div>
-            <div id="weatherLow1"></div>
-            <div id="weatherPrep1"></div>
-            <div id="weatherWind1"></div>
-            <h1 id="weatherDOW2"></h1>
-            <div id="weatherIcon2"></div>
-            <div id="weatherHigh2"></div>
-            <div id="weatherLow2"></div>
-            <div id="weatherPrep2"></div>
-            <h1 id="weatherDOW3"></h1>
-            <div id="weatherIcon3"></div>
-            <div id="weatherHigh3"></div>
-            <div id="weatherLow3"></div>
-            <div id="weatherPrep3"></div>
+            <div id="currentWeatherContainer">
+                <h1 id="currentWeather">Current Weather</h1>
+                <div id="weatherImage"></div>
+                <div id="weatherLocation"></div>
+                <div id="weatherAlerts"></div>
+                <div id="weatherTemp"></div>
+                <div id="weatherHumidity"></div>
+                <div id="weatherWind"></div>
+            </div>
+            <div id="DOW1Container">
+                <h1 id="weatherDOW1"></h1>
+                <div id="weatherIcon1"></div>
+                <div id="weatherHigh1"></div>
+                <div id="weatherLow1"></div>
+                <div id="weatherPrep1"></div>
+                <div id="weatherWind1"></div>
+            </div>
+            <div id="DOW2Container">
+                <h1 id="weatherDOW2"></h1>
+                <div id="weatherIcon2"></div>
+                <div id="weatherHigh2"></div>
+                <div id="weatherLow2"></div>
+                <div id="weatherPrep2"></div>
+            </div>
+            <div id="DOW3Container">
+                <h1 id="weatherDOW3"></h1>
+                <div id="weatherIcon3"></div>
+                <div id="weatherHigh3"></div>
+                <div id="weatherLow3"></div>
+                <div id="weatherPrep3"></div>
+            </div>
         </div>
+    </div>
 </div>
 
 <div id="myModal2" class="modal fade" role="dialog" >

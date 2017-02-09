@@ -1,7 +1,7 @@
 /* Sean's CSS */
 #map {
     height: 100%;
-    width: 50%;
+    width: 60%;
     display: inline-block;
 }
 
@@ -23,7 +23,7 @@ html, body {
 }
 
 #weatherBar{
-    width: 25%;
+    width: 15%;
     height: 100%;
     border: solid black;
     display: inline-block;
@@ -105,6 +105,9 @@ html, body {
 }
 html>body {
     font-size: 0;
+}
+html>body>*{
+    font-size: initial;
 }
 #displayData {
     /*color: white;*/
@@ -511,32 +514,39 @@ html>body {
 
 /* Put my code down here to avoid any conflicts hope it works */
 
-button.accordion {
-    color: #444;
-    cursor: pointer;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    transition: 0.4s;
-    background-color: white;
-    padding: 6px 8px 6px 32px;
-    text-decoration: none;
+
+#currentWeather{
     font-size: 18px;
 }
 
 
-button.accordion.active, button.accordion:hover {
-    background-color: #ddd;
+#weatherDOW1{
+    font-size: 12px;
 }
 
-div.panelAccordian {
-    padding: 0 50px;
-    background-color: black;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    color: white;
+#weatherDOW2{
+    font-size: 12px;
+
+
 }
 
+#weatherDOW3{
+    font-size: 12px;
+}
 
+#currentWeatherContainer{
+    font-size: 12px;
+
+}
+
+#DOW3Container{
+    font-size: 12px;
+}
+
+#DOW2Container{
+    font-size: 12px;
+}
+
+#DOW1Container{
+    font-size: 12px;
+}

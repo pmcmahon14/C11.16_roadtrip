@@ -3,6 +3,9 @@ $(document).ready(function(){
     $("#getDirectionsButton").hide();
     $("#weatherDisplayContainer").hide();
     $("#displayDataContainer").hide();
+    $("#weatherBar").hide();
+    $("#eventsBar").hide();
+    $('#map').css('width',"100%");
     getGasolineCost();
 
 
@@ -105,10 +108,10 @@ function create_event_marker(eventData){
 }
 
 function create_info_event(marker,result){
-    var title = $("<h1>",{
+    var title = $("<h3>",{
         text: result.title
     });
-    var cityLabel = $("<h3>",{
+    var cityLabel = $("<h4>",{
         text: result.city_name
     });
     var timeForEvent = $("<p>",{
@@ -198,6 +201,10 @@ AutocompleteDirectionsHandler.prototype.route = function() {
             getWeather();
             initialEvents(destination);
             $("#displayDataContainer").show();
+            $('#map').css('width',"60%");
+            $("#weatherBar").show();
+            $("#eventsBar").show();
+
 
 
             var currentI = 0;
@@ -414,7 +421,10 @@ function getWeather() {
 }
 
 function noAlerts(result){
-    if (result.alerts.length === 0) {
+    console.log('result is : ', result);
+    // if (result.alerts.length === 0) {
+    if (result.alerts === undefined) {
+
         console.log('Test: ' + result.alerts);
         alertmessage = "No weather alerts.";
     } else {

@@ -514,7 +514,11 @@ html>body>*{
 
 
 /* Put my code down here to avoid any conflicts hope it works */
+#weatherDisplayContainer {
+    text-align: center;
+    font-size: 14px;
 
+}
 
 #currentWeather{
     font-size: 18px;

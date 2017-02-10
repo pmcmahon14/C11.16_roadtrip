@@ -17,6 +17,8 @@ var output;
 var startDate;
 var endDate;
         var myDateRange;
+        var todaysDate;
+
 
         function getInformation() {
             $.ajax({
@@ -27,7 +29,8 @@ var endDate;
                 dataType: 'jsonp',
                 method: "get",
 //                url: 'http://api.eventful.com/json/events/search?...&keywords='+choice+'&location='+cityForEvent+'&date=2017020500-2017021500&app_key=9QPc4kCRH3JtNMsD',
-                url: 'http://api.eventful.com/json/events/search?...&keywords=' + choice + '&location=' + cityForEvent + '&date=' + myDateRange + '&app_key=9QPc4kCRH3JtNMsD',
+//                url: 'http://api.eventful.com/json/events/search?...&keywords=' + choice + '&location=' + cityForEvent + '&date=' + myDateRange + '&app_key=9QPc4kCRH3JtNMsD',
+                url: 'http://api.eventful.com/json/events/search?...&keywords=comedy&location=' + cityForEvent + '&date=today&app_key=9QPc4kCRH3JtNMsD',
 
                 success: function (result) {
                     output = result;
@@ -63,12 +66,12 @@ var endDate;
         function getResults() {
             cityForEvent = $('#cityEvent').val();
 
-            choice = (document.querySelector('input[name="choose"]:checked').value);
+            //choice = (document.querySelector('input[name="choose"]:checked').value);
             //console.log('User has typed: ' + choice);
-            startDate = $('#start').val();
-            endDate = $('#end').val();
-            myDateRange = (startDate + '00-' + endDate + '00');
-            console.log(myDateRange);
+            //startDate = $('#start').val();
+            //endDate = $('#end').val();
+            //myDateRange = (startDate + '00-' + endDate + '00');
+            //console.log(myDateRange);
             getInformation();
         }
 

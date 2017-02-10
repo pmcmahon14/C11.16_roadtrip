@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <title>Profile</title>
+    <script>
+
+    </script>
+    <style>
+        #header {
+            background-color: blue;
+            margin: -20px;
+            height: 50px;
+            text-align: center;
+            color: white;
+        }
+        #username {
+            margin-top: 20px;
+            margin-bottom: -10px;
+        }
+        .profile-headings {
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="header">
+    <h1>Your Profile</h1>
+</div>
+
+<!--USERNAME DISPLAY-->
+
+<div id="username">
+    <p class="profile-headings">Username: My Name Here</p><br>
+</div>
+
+<!--PASSWORD FORM-->
+
+<div id="password">
+    <form class="profile-headings">Change Password: <input type="password" name="password" size="16"><input type="submit" value="Submit"></form>
+</div>
+
+<!--PLACES DEFAULT SETTINGS-->
+
+<div id="places-defaults">
+    <p class="profile-headings">Places Defaults</p></span><br>
+    <form>
+        <input type="checkbox" name="places" value="accomodations">Accomodations<br>
+        <input type="checkbox" name="places" value="attractions">Attractions<br>
+        <input type="checkbox" name="places" value="outdoors and recreation">Outdoors/Recreation<br>
+        <input type="checkbox" name="places" value="gas and service stations">Gas/Service Stations<br>
+        <input type="checkbox" name="places" value="food and drink">Food and Drink<br><br>
+    </form>
+</div>
+
+<!--EVENTS DEFAULT SETTINGS-->
+
+<div id="events-defaults">
+    <p class="profile-headings">Events Defaults</p>
+    <form>
+        <input type="checkbox" name="choose" value="Comedy">Comedy<br>
+        <input type="checkbox" name="choose" value="Concerts and Tour Dates">Concerts and Tour Dates<br>
+        <input type="checkbox" name="choose" value="Conferences and Trade Shows">Conferences and Trade Shows<br>
+        <input type="checkbox" name="choose" value="Festivals">Festivals<br>
+        <input type="checkbox" name="choose" value="Food and Wine">Food and Wine<br>
+        <input type="checkbox" name="choose" value="Kids and Family">Kids and Family<br>
+        <input type="checkbox" name="choose" value="Nightlife and Singles">Nightlife and Singles<br>
+        <input type="checkbox" name="choose" value="Performing Arts">Performing Arts<br>
+        <input type="checkbox" name="choose" value="Sports">Sports<br>
+    </form>
+</div>
+</body>
+</html>

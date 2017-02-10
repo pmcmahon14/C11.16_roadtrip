@@ -352,7 +352,11 @@ html, body {
 }
 
 .sidenav3 a:hover, .offcanvas a:focus {
-    color: #f1f1f1;
+    color: darkgrey;
+    text-decoration: none;
+
+
+
 }
 
 .sidenav3 .closebtn {

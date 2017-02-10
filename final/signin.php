@@ -18,38 +18,40 @@
     <div class="text-center">
         <h1>TRIP PLANNER</h1>
         <legend></legend>
-    </div>
-    <div class="row vertical-offset-100">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Please sign in</h3>
-                </div>
-                <div class="panel-body">
-                    <form accept-charset="UTF-8" role="form" method="Post">
-                        <fieldset>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="User Name" name="username" type="text">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password">
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                </label>
-                            </div>
-                            <input class="btn btn-lg btn-info btn-block" type="submit" name="submit">
-                        </fieldset>
-                    </form>
-                    <hr>
-                    <div class="createAccountCancel">
-                        <p>Don't have an account! <a href="create_new_account.php">Create one here</a></p>
+        <div class="row vertical-offset-100">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Please sign in</h3>
+                    </div>
+                    <?php if(isset($_GET['err'])) { ?>
+                        <div class="alert alert-success"><?php echo $_GET['err'] ?></div>
+                    <?php } ?>
+                    <div class="panel-body">
+                        <form accept-charset="UTF-8" role="form" method="Post">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="User Name" name="username" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" name="password" type="password">
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                    </label>
+                                </div>
+                                <input class="btn btn-lg btn-info btn-block" type="submit" name="submit">
+                            </fieldset>
+                        </form>
+                        <hr>
+                        <div class="createAccountCancel">
+                            <p>Don't have an account! <a href="create_new_account.php">Create one here</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 </body>
 </html>

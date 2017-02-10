@@ -12,77 +12,80 @@
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script src="JsFinal.js"></script>
     <script src="events_finder.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgbouMURMuy_zBO2i2WZX_UqBppNMQPvY&libraries=places&callback=initMap" defer></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLGhFk5m-1IGHOHb02jvRBSJIZZfrlDic&libraries=places&callback=initMap"
+            defer></script>
 
 
 </head>
 <body>
-
-<div id="mapPageMenuContainer" class="container-fluid">
-    <div class="row">
-        <span class="mapMenu col-sm-4" id="home2" onclick="openNav2()">&#9776;<span>Menu</span></span>
-        <span class="col-sm-4" id="mapLogo">Roadtripping</span>
-        <span class="col-sm-4" id="getDirectionsButton" onclick="openNav3()">Directions</span>
-    </div>
-</div>
-
-<div id="inputsContainer" class="container-fluid">
-    <div class="row">
-        <input id="origin-input" class="col-sm-5" type="text" autofocus
-               placeholder="Enter a location">
-        <input id="destination-input" class="col-sm-5" type="text"
-               placeholder="Enter a destination">
-    </div>
-</div>
-
-<div id="mode-selector" class="controls">
-    <input name="type" id="changemode-driving">
-    <label for="changemode-driving"></label>
-</div>
-
-<div id="mySidenav2" class="sidenav2">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
-    <a href="signin.php">Sign In</a>
-    <a href="create_new_account.php">Create Account</a>
-    <a href="">My Account</a>
-    <a id=displayData type="button">Choose Places</a>
-    <a href="check_list.html" onclick="flipPage()">Pack/Shop List</a>
-    <a id= "displayData2" type="button" data-toggle="modal" data-target="#myModal2" onclick="set_val_destination()">Find Event</a>
-    <a onclick="getWeather()">Weather</a>
-    <div id="weatherDisplayContainer">
-        <button class="accordion">Current Weather</button>
-        <div class="panelAccordian">
-            <div id="weatherImage"></div>
-            <div id="weatherLocation"></div>
-            <div id="weatherAlerts"></div>
-            <div id="weatherTemp"></div>
-            <div id="weatherHumidity"></div>
-            <div id="weatherWind"></div>
-        </div>
-        <button class="accordion" id="weatherDOW1"></button>
-        <div class="panelAccordian">
-            <div id="weatherIcon1"></div>
-            <div id="weatherHigh1"></div>
-            <div id="weatherLow1"></div>
-            <div id="weatherPrep1"></div>
-            <div id="weatherWind1"></div>
-        </div>
-        <button class="accordion" id="weatherDOW2"></button>
-        <div class="panelAccordian">
-            <div id="weatherIcon2"></div>
-            <div id="weatherHigh2"></div>
-            <div id="weatherLow2"></div>
-            <div id="weatherPrep2"></div>
-        </div>
-        <button class="accordion" id="weatherDOW3"></button>
-        <div class="panelAccordian">
-            <div id="weatherIcon3"></div>
-            <div id="weatherHigh3"></div>
-            <div id="weatherLow3"></div>
-            <div id="weatherPrep3"></div>
+<div class="front">
+    <div id="mapPageMenuContainer" class="container-fluid">
+        <div class="row">
+            <span class="mapMenu col-sm-4" id="home2" onclick="openNav2()">&#9776;<span>Menu</span></span>
+            <span class="col-sm-4" id="mapLogo">Roadtripping</span>
+            <span class="col-sm-4" id="getDirectionsButton" onclick="openNav3()">Directions</span>
         </div>
     </div>
+
+    <div id="inputsContainer" class="container-fluid">
+        <div class="row">
+            <input id="origin-input" class="col-sm-5" type="text"
+                   placeholder="Enter a location">
+            <input id="destination-input" class="col-sm-5" type="text"
+                   placeholder="Enter a destination ">
+        </div>
+    </div>
+
+    <div id="mode-selector" class="controls">
+        <input name="type" id="changemode-driving">
+        <label for="changemode-driving"></label>
+    </div>
+
+    <div id="mySidenav2" class="sidenav2">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
+        <a href="signin.html">Sign In</a>
+        <a href="create_new_account.html">Create Account</a>
+        <a href="">My Account</a>
+        <a id=displayData type="button" data-toggle="modal" data-target="#myModal">Choose Places</a>
+        <a href="check_list.html" onclick="flipPage()">Pack/Shop List</a>
+        <a id=displayData2 type="button" data-toggle="modal" data-target="#myModal2" onclick="set_val_destination()">Find
+            Event</a>
+        <a onclick="getWeather()">Weather</a>
+        <div id="weatherDisplayContainer">
+            <button class="accordion">Current Weather</button>
+            <div class="panel">
+                <div id="weatherImage"></div>
+                <div id="weatherLocation"></div>
+                <div id="weatherAlerts"></div>
+                <div id="weatherTemp"></div>
+                <div id="weatherHumidity"></div>
+                <div id="weatherWind"></div>
+            </div>
+            <button class="accordion" id="weatherDOW1"></button>
+            <div class="panel">
+                <div id="weatherIcon1"></div>
+                <div id="weatherHigh1"></div>
+                <div id="weatherLow1"></div>
+                <div id="weatherPrep1"></div>
+                <div id="weatherWind1"></div>
+            </div>
+            <button class="accordion" id="weatherDOW2"></button>
+            <div class="panel">
+                <div id="weatherIcon2"></div>
+                <div id="weatherHigh2"></div>
+                <div id="weatherLow2"></div>
+                <div id="weatherPrep2"></div>
+            </div>
+            <button class="accordion" id="weatherDOW3"></button>
+            <div class="panel">
+                <div id="weatherIcon3"></div>
+                <div id="weatherHigh3"></div>
+                <div id="weatherLow3"></div>
+                <div id="weatherPrep3"></div>
+            </div>
+        </div>
+    </div>
+
 
     <div id="mySidenav3" class="sidenav3">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav3()">&times;</a>
@@ -91,6 +94,7 @@
         <div id="right-panel"></div>
     </div>
 
+    <div id="map"></div>
 
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -212,9 +216,9 @@
     </div>
 </div>
 
-<div id="map"></div>
+<div class="back">
 
-
+</div>
 
 </body>
 </html>

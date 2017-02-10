@@ -354,7 +354,11 @@ html, body {
 }
 
 .sidenav3 a:hover, .offcanvas a:focus {
-    color: #f1f1f1;
+    color: darkgrey;
+    text-decoration: none;
+
+
+
 }
 
 .sidenav3 .closebtn {
@@ -490,8 +494,10 @@ button.accordion {
 
 
 button.accordion.active, button.accordion:hover {
-    text-decoration-color: yellow;
+    color: yellow;
     text-decoration: underline;
+    text-decoration-color: yellow;
+
 }
 
 div.panelAccordian {

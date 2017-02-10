@@ -483,15 +483,20 @@ button.accordion {
     text-align: left;
     outline: none;
     transition: 0.4s;
-    background-color: white;
+    background-color: black;
     padding: 6px 8px 6px 32px;
     text-decoration: none;
     font-size: 18px;
+    color: white;
+
 }
 
 
 button.accordion.active, button.accordion:hover {
-    background-color: #ddd;
+    color: yellow;
+    text-decoration: underline;
+    text-decoration-color: yellow;
+;
 }
 
 div.panelAccordian {

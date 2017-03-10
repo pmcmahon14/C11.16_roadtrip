@@ -117,10 +117,12 @@ html, body {
 
 .infoPlaceName {
     font-family: 'Roboto', 'sans-serif';
+    font-size: 18px;
 }
 
 .infoPlaceAddress {
     font-family: 'Roboto', 'sans-serif';
+    font-size: 12px;
 
 
 }
@@ -253,7 +255,7 @@ html, body {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: black;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -488,7 +490,6 @@ button.accordion {
     text-decoration: none;
     font-size: 18px;
     color: white;
-
 }
 
 
@@ -496,7 +497,7 @@ button.accordion.active, button.accordion:hover {
     color: yellow;
     text-decoration: underline;
     text-decoration-color: yellow;
-;
+
 }
 
 div.panelAccordian {

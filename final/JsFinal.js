@@ -59,10 +59,24 @@ var weatherLoaded = false;
 var result;
 var cityForEvent = null;
 var choice = null;
-
+var name;
+var types;
+var address;
 
 var dataPointsBlocker = false;
 var findEventBlocker = false;
+
+var userObject = {
+    trip:{
+        accomodations:[],
+        attractions:[],
+        recreation: [],
+        food: [],
+        gas: []
+    },
+    mpg:null
+
+};
 
 
 function initMap() {
@@ -290,17 +304,53 @@ function processResults(results, status, pagination) {
             }
     }
 }
-
+function addToTripList(types, name, address){
+    console.log("name: ", name);
+    console.log("address", address);
+    switch (types){
+        case "lodging":
+            userObject.trip.accomodations.push(name, address);
+            break;
+        case "amusement_park":
+          userObject.trip.attractions.push(name,address);
+            break;
+        case "zoo":
+            userObject.trip.attractions.push(name,address);
+            break;
+        case 'aquarium':
+            userObject.trip.attractions.push(name,address);
+            break;
+        case "park":
+            userObject.trip.recreation.push(name,address);
+            break;
+        case 'gas_station':
+            userObject.trip.gas.push(name,address);
+            break;
+        case "restaurants":
+            userObject.trip.food.push(name,address);
+            break;
+        case "bar":
+            userObject.trip.food.push(name,address);
+            break;
+    }
+    console.log("users object", userObject);
+}
+// $(".tripList").on("click",function(types, name, address){
+//     addToTripList(types, name, address)
+// });
 function createMarkers(places) {
     var  markersArray = [];
     var bounds = new google.maps.LatLngBounds();
     for (var i = 0, place; place = places[i]; i++) {
-        var name = place.name;
-        var address = places[i].vicinity;
+        name = places[i].name;
+        types = places[i].types[0];
+        console.log(types);
+        address = places[i].vicinity;
         var content =
             '<div class="infoWindow">' +
             '<h1 class="infoPlaceName">' + name + '</h1>' +
             '<h5 class="infoPlaceAddress>">' + address + '</h5>' +
+            '<button class="tripList" onclick="addToTripList(types, name, address)"> Add To Trip List</button>' +
             '</div>';
 
         var image = {
@@ -319,6 +369,7 @@ function createMarkers(places) {
         let infoWindow = new google.maps.InfoWindow({
             content: content
         });
+
         markersArray.push(marker);
         marker.addListener('click', function () {
             infoWindow.open(map, marker);

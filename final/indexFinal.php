@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(isset($_SESSION['auth'])){
+
+}else {
+    header('Location:signin.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +24,25 @@
     <script src="database.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgbouMURMuy_zBO2i2WZX_UqBppNMQPvY&libraries=places&callback=initMap" defer></script>
 
+    <script>
 
+        function test(){
+            console.log('hahahahaha');
+            $.ajax({
+                url: 'http://localhost/final/backend/display_data_from_database.php',
+                type: "POST",
+                dataType: 'json',
+                data: ({
+                    id:<?php echo $_SESSION['user_id']?>
+                }),
+                success: function(result){
+                    console.log('cung',result);
+                    $('#origin-input').val(result[0].origin);
+                    $('#destination-input').val(result[0].destination);
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 
@@ -25,19 +52,20 @@
         <span class="col-sm-4" id="mapLogo">Roadtripping </span>
         <span class="col-sm-4" id="getDirectionsButton" onclick="openNav3()">Directions</span>
     </div>
-    <!--<button id="save_routes_to_database">Save shet</button>-->
+    <button class="btn btn-info" onclick="test()">My last trip</button>
+    <button id="save_places_to_database" class="btn btn-info">save places
+    </button>
+
 </div>
 
 <div id="inputsContainer" class="container-fluid">
     <div class="row">
-        <input id="origin-input" class="col-sm-5" type="text" autofocus
+        <input id="origin-input" class="col-sm-5" type="text"
                placeholder="Enter a location">
         <input id="destination-input" class="col-sm-5" type="text"
                placeholder="Enter a destination">
     </div>
 </div>
-
-
 
 <div id="mode-selector" class="controls">
     <input name="type" id="changemode-driving">
@@ -46,15 +74,14 @@
 
 <div id="mySidenav2" class="sidenav2">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
-    <a href="backend/signin.php">Sign In</a>
-    <a href="backend/create_new_account.php">Create Account</a>
+<!--    <a href="signin.html">Sign In</a>-->
+<!--    <a href="create_new_account.html">Create Account</a>-->
     <a href="">My Account</a>
     <a id=displayData type="button">Choose Places</a>
     <a href="check_list.html" onclick="flipPage()">Pack/Shop List</a>
     <a id= "displayData2" type="button" data-toggle="modal" data-target="#myModal2" onclick="set_val_destination()">Find Event</a>
     <a onclick="getWeather()">Weather</a>
-
-
+    <a href="signout.php"> Sign out </a>
     <div id="weatherDisplayContainer">
         <button class="accordion">Current Weather</button>
         <div class="panelAccordian">
@@ -90,11 +117,14 @@
     </div>
 </div>
 
+
 <div id="mySidenav3" class="sidenav3">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav3()">&times;</a>
     <label id="directionsLabel"><input type="checkbox" id="traffic" onclick="showTraffic()"/>Show/Hide Traffic</label>
     <div id="right-panel"></div>
 </div>
+
+<div id="map"></div>
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -126,7 +156,7 @@
                         <li><a><input value="amusement park" type="checkbox" name="att_amusement"/>Amusement Parks</a></li>
                         <li><a><input value="museums" type="checkbox" name="att_museums"/>Museums</a></li>
                         <li><a><input  value="zoo / aquarium" type="checkbox" name="att_zoo"/>Zoo/Aquarium</a></li>
-                   </ul>
+                    </ul>
                 </div>
                 <!-- Third drop down Outdoors and Recreation -->
                 <div class="dropdown">
@@ -167,57 +197,50 @@
                         <li><a><input value="health Food + health" type="checkbox" name="food_vegetarian"/>Vegetarian and Health Food</a></li>
                         <li><a><input value="bars" type="checkbox" name="food_bars"/>Bars and Drinks</a></li>
                         <li><a><input value="wineries/Breweries" type="checkbox" name="food_wineries"/>Wineries, Breweries and
-                            Distilleries</a></li>
+                                Distilleries</a></li>
                     </ul>
                 </div>
             </div>
             <div class="modal-footer">
                 <button id="actionSubmit" type="button" class="btn btn-default" data-dismiss="modal">Show Results
                 </button>
-                <button id="save_places_to_database" type="button" class="btn btn-default" data-dismiss="modal">save places
-                </button>
-            </div>
-        </div>
-    </div>
 
-    <div id="myModal2" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content" id="modal_content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">what would you like for event?</h4>
-                </div>
-                <div class="modal-body" id="modal_body">
-                    <form>
-                        <div class="input-group">
-                            <span class="input-group-addon">City</span>
-                            <input id="cityEvent" type="text" class="form-control" name="cityEvent"
-                                   placeholder="Additional Info">
-                        </div>
-                        <input type="radio" name="choose" value="Comedy">Comedy<br>
-                        <input type="radio" name="choose" value="Concerts and Tour Dates">Concerts and Tour Dates<br>
-                        <input type="radio" name="choose" value="Conferences and Trade Shows">Conferences and Trade
-                        Shows<br>
-                        <input type="radio" name="choose" value="Festivals">Festivals<br>
-                        <input type="radio" name="choose" value="Food and Wine">Food and Wine<br>
-                        <input type="radio" name="choose" value="Kids and Family">Kids and Family<br>
-                        <input type="radio" name="choose" value="Nightlife and Singles">Nightlife and Singles<br>
-                        <input type="radio" name="choose" value="Performing Arts">Performing Arts<br>
-                        <input type="radio" name="choose" value="Sports">Sports<br>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button id="submit_event" type="button" class="btn btn-default" data-dismiss="modal">Show Results
-                    </button>
-                </div>
             </div>
         </div>
     </div>
 </div>
 
-<div id="map"></div>
-
+<div id="myModal2" class="modal fade" role="dialog" >
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" id="modal_content">
+            <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">what would you like for event?</h4>
+            </div>
+            <div class="modal-body" id="modal_body">
+                <form>
+                    <div class="input-group">
+                        <span class="input-group-addon">City</span>
+                        <input id="cityEvent" type="text" class="form-control" name="cityEvent" placeholder="Additional Info">
+                    </div>
+                    <input type="radio" name="choose" value="Comedy">Comedy<br>
+                    <input type="radio" name="choose" value="Concerts and Tour Dates">Concerts and Tour Dates<br>
+                    <input type="radio" name="choose" value="Conferences and Trade Shows">Conferences and Trade Shows<br>
+                    <input type="radio" name="choose" value="Festivals">Festivals<br>
+                    <input type="radio" name="choose" value="Food and Wine">Food and Wine<br>
+                    <input type="radio" name="choose" value="Kids and Family">Kids and Family<br>
+                    <input type="radio" name="choose" value="Nightlife and Singles">Nightlife and Singles<br>
+                    <input type="radio" name="choose" value="Performing Arts">Performing Arts<br>
+                    <input type="radio" name="choose" value="Sports">Sports<br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="submit_event"  type="button" class="btn btn-default" data-dismiss="modal" onclick="/*getInformation()*/">Show Results</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </body>

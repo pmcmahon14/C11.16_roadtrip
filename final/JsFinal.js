@@ -19,17 +19,22 @@ $(document).ready(function(){
     });
     $("#displayData").on('click',function() {
         if(dataPointsBlocker === false){
+            console.log('data point ' + dataPointsBlocker);
             show_message("Please select your route first");
         } else {
             $("#myModal").modal('show');
+            console.log('data point ' + dataPointsBlocker);
+
         }
     });
 
     $("#displayData2").on('click',function () {
         if(findEventBlocker === false){
+            console.log('event blocker ' + findEventBlocker);
             show_message("Please select route");
         }else{
-            $("#myModalTwo").modal("show");
+            $("#myModal2").modal("show");
+            console.log('event blocker ' + findEventBlocker);
         }
     });
 
@@ -218,6 +223,9 @@ AutocompleteDirectionsHandler.prototype.route = function() {
 
     }, function (response, status) {
         if (status === 'OK') {
+            console.log('response ' + result);
+            console.log('status ' + status);
+            console.log('status ok');
             me.directionsDisplay.setDirections(response);
             route = response.routes[0];
             var path = response.routes[0].overview_path;
